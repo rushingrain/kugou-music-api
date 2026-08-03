@@ -145,6 +145,16 @@ func toInt(v any, def int) int {
 	return def
 }
 
+// firstNonZero returns def when v is 0.
+// Matches the JS reference project's `params?.x || default` semantics,
+// where a zero/omitted int field falls back to its default value.
+func firstNonZero(v int, def int) int {
+	if v == 0 {
+		return def
+	}
+	return v
+}
+
 func toBool(v any, def bool) bool {
 	s := strings.ToLower(strings.TrimSpace(fmt.Sprintf("%v", v)))
 	switch s {

@@ -116,8 +116,8 @@ func (c *Client) ArtistAudios(ctx context.Context, req ArtistAudiosRequest) (*Ar
 		"clienttime": clienttime,
 		"key":        signParamsKey(strconv.FormatInt(clienttime, 10), c.isLite),
 		"author_id":  req.Id,
-		"pagesize":   toInt(req.Pagesize, 30),
-		"page":       toInt(req.Page, 1),
+		"pagesize":   firstNonZero(req.Pagesize, 30),
+		"page":       firstNonZero(req.Page, 1),
 		"sort":       ternaryInt(strings.TrimSpace(fmt.Sprintf("%v", req.Sort)) == "hot", 1, 2),
 		"area_code":  "all",
 	}

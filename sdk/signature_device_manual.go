@@ -32,12 +32,12 @@ func (c *Client) RegisterDev(ctx context.Context, req RegisterDevRequest) (*Regi
 	guid := firstNonEmpty(cookies["KUGOU_API_GUID"], cookies["mid"])
 
 	dataMap := map[string]any{
-		"availableRamSize":   toInt(firstAny(params["availableRamSize"], req.AvailableRamSize), 4983533568),
-		"availableRomSize":   toInt(firstAny(params["availableRomSize"], req.AvailableRomSize), 48114719),
-		"availableSDSize":    toInt(firstAny(params["availableSDSize"], req.AvailableSDSize), 48114717),
+		"availableRamSize":   firstNonZero(toInt(firstAny(params["availableRamSize"], req.AvailableRamSize), 4983533568), 4983533568),
+		"availableRomSize":   firstNonZero(toInt(firstAny(params["availableRomSize"], req.AvailableRomSize), 48114719), 48114719),
+		"availableSDSize":    firstNonZero(toInt(firstAny(params["availableSDSize"], req.AvailableSDSize), 48114717), 48114717),
 		"basebandVer":        firstNonEmpty(fmt.Sprintf("%v", firstAny(params["basebandVer"], req.BasebandVer)), ""),
-		"batteryLevel":       toInt(firstAny(params["batteryLevel"], req.BatteryLevel), 100),
-		"batteryStatus":      toInt(firstAny(params["batteryStatus"], req.BatteryStatus), 3),
+		"batteryLevel":       firstNonZero(toInt(firstAny(params["batteryLevel"], req.BatteryLevel), 100), 100),
+		"batteryStatus":      firstNonZero(toInt(firstAny(params["batteryStatus"], req.BatteryStatus), 3), 3),
 		"brand":              firstNonEmpty(fmt.Sprintf("%v", firstAny(params["brand"], req.Brand)), "Redmi"),
 		"buildSerial":        firstNonEmpty(fmt.Sprintf("%v", firstAny(params["buildSerial"], req.BuildSerial)), "unknown"),
 		"device":             firstNonEmpty(fmt.Sprintf("%v", firstAny(params["device"], req.Device)), "marble"),

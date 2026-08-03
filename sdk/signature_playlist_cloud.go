@@ -132,7 +132,7 @@ func (c *Client) TopCard(ctx context.Context, req TopCardRequest) (*TopCardRespo
 		Method:      "POST",
 		URL:         "/singlecardrec.service/v1/single_card_recommend",
 		Data:        data,
-		Params:      map[string]any{"card_id": toInt(req.CardId, 1), "fakem": fakem, "area_code": 1, "platform": "ios"},
+		Params:      map[string]any{"card_id": firstNonZero(req.CardId, 1), "fakem": fakem, "area_code": 1, "platform": "ios"},
 		Cookie:      cookies,
 		EncryptType: "android",
 	})
@@ -150,10 +150,16 @@ func (c *Client) TopPlaylist(ctx context.Context, req TopPlaylistRequest) (*TopP
 	}
 	appid, clientver := config.PlatformConfig(c.isLite)
 	dateTime := time.Now().Unix()
+	userid := "0"
+	if v := req.Userid; v != nil && fmt.Sprintf("%v", v) != "" {
+		userid = fmt.Sprintf("%v", v)
+	} else if v := cookies["userid"]; v != "" {
+		userid = v
+	}
 	specialRecommend := map[string]any{
-		"withtag":       toInt(req.Withtag, 1),
-		"withsong":      toInt(req.Withsong, 1),
-		"sort":          toInt(req.Sort, 1),
+		"withtag":       firstNonZero(req.Withtag, 1),
+		"withsong":      firstNonZero(req.Withsong, 1),
+		"sort":          firstNonZero(req.Sort, 1),
 		"ugc":           1,
 		"is_selected":   0,
 		"withrecommend": 1,
@@ -166,10 +172,10 @@ func (c *Client) TopPlaylist(ctx context.Context, req TopPlaylistRequest) (*TopP
 		"clientver":           clientver,
 		"platform":            "android",
 		"clienttime":          dateTime,
-		"userid":              firstNonEmpty(cookies["userid"], fmt.Sprintf("%v", req.Userid), "0"),
-		"module_id":           toInt(req.ModuleId, 1),
-		"page":                toInt(req.Page, 1),
-		"pagesize":            toInt(req.Pagesize, 30),
+		"userid":              userid,
+		"module_id":           firstNonZero(req.ModuleId, 1),
+		"page":                firstNonZero(req.Page, 1),
+		"pagesize":            firstNonZero(req.Pagesize, 30),
 		"key":                 signParamsKey(strconv.FormatInt(dateTime, 10), c.isLite),
 		"special_recommend":   specialRecommend,
 		"req_multi":           1,

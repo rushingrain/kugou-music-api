@@ -1,4 +1,4 @@
-module github.com/lfhy/kugou-music-api
+module github.com/rushingrain/kugou-music-api
 
 go 1.22
 

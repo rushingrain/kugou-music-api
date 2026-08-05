@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/sdk"
+	"github.com/rushingrain/kugou-music-api/sdk"
 )
 
 type songItem struct {

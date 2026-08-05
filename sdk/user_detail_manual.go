@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 type userDetailSignature struct {

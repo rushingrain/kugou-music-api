@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	corekugou "github.com/lfhy/kugou-music-api/core/kugou"
+	corekugou "github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 func TestCallAutoRefreshesExpiredLogin(t *testing.T) {

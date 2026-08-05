@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 // Device registration and user video mutation endpoints share bespoke signatures.

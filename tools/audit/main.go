@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/parser"
+	"github.com/rushingrain/kugou-music-api/core/parser"
 )
 
 type item struct {

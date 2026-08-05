@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/lfhy/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/config"
 )
 
 // Scene and search endpoints need manual parameter normalization.

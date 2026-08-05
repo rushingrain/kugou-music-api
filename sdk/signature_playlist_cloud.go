@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/config"
-	"github.com/lfhy/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 // Playlist and cloud endpoints require custom encryption and signature steps.

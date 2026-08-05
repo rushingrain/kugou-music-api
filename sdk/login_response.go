@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 // finalizeLoginResponse normalizes login payloads and writes refreshed auth cookies back to the pool.

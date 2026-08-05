@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/config"
 )
 
 // Comment and personal FM endpoints stay grouped by shared request signing rules.

@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/config"
-	"github.com/lfhy/kugou-music-api/core/util"
+	"github.com/rushingrain/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/util"
 )
 
 // Shared signature helpers are isolated so the per-feature files stay compact.

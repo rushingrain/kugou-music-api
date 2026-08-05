@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	kg "github.com/lfhy/kugou-music-api"
-	"github.com/lfhy/kugou-music-api/examples/shared/session"
+	kg "github.com/rushingrain/kugou-music-api"
+	"github.com/rushingrain/kugou-music-api/examples/shared/session"
 )
 
 func main() {

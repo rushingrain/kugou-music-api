@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/lfhy/kugou-music-api/core/parser"
+	"github.com/rushingrain/kugou-music-api/core/parser"
 )
 
 type fieldType int

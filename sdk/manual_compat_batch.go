@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/lfhy/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/config"
 )
 
 func compatRequest(req any, identifier string, cookie map[string]string, extra map[string]any) (map[string]any, map[string]string) {

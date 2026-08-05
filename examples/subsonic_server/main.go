@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/examples/shared/session"
-	"github.com/lfhy/kugou-music-api/sdk"
+	"github.com/rushingrain/kugou-music-api/examples/shared/session"
+	"github.com/rushingrain/kugou-music-api/sdk"
 )
 
 // main wires the KuGou SDK, session loading, and HTTP server startup together.

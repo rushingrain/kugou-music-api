@@ -6,7 +6,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
 )
 
 func (c *Client) Call(ctx context.Context, route string, req Request) (*Response, error) {

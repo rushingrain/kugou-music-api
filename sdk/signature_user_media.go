@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/config"
-	"github.com/lfhy/kugou-music-api/core/kugou"
-	"github.com/lfhy/kugou-music-api/core/util"
+	"github.com/rushingrain/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/util"
 )
 
 type tokenSignature struct {

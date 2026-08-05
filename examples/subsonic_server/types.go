@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/lfhy/kugou-music-api/sdk"
+	"github.com/rushingrain/kugou-music-api/sdk"
 )
 
 // Subsonic XML models and in-memory server state are defined here.

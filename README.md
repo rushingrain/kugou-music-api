@@ -9,13 +9,13 @@
 安装：
 
 ```bash
-go get github.com/lfhy/kugou-music-api
+go get github.com/rushingrain/kugou-music-api
 ```
 
 推荐直接从根包导入：
 
 ```go
-import kg "github.com/lfhy/kugou-music-api"
+import kg "github.com/rushingrain/kugou-music-api"
 ```
 
 最小示例：
@@ -28,7 +28,7 @@ import (
 	"fmt"
 	"log"
 
-	kg "github.com/lfhy/kugou-music-api"
+	kg "github.com/rushingrain/kugou-music-api"
 )
 
 func main() {
@@ -52,8 +52,8 @@ func main() {
 ```
 
 兼容说明：
-- 推荐新项目直接使用根包 `github.com/lfhy/kugou-music-api`
-- 旧代码仍可继续使用子包 `github.com/lfhy/kugou-music-api/sdk`
+- 推荐新项目直接使用根包 `github.com/rushingrain/kugou-music-api`
+- 旧代码仍可继续使用子包 `github.com/rushingrain/kugou-music-api/sdk`
 
 会话与自动刷新：
 - SDK 默认使用 `lite` 平台参数构造客户端

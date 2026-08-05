@@ -1,8 +1,8 @@
 // Package kugou exposes the SDK from the module root so callers can import
-// github.com/lfhy/kugou-music-api directly.
+// github.com/rushingrain/kugou-music-api directly.
 package kugou
 
-import "github.com/lfhy/kugou-music-api/sdk"
+import "github.com/rushingrain/kugou-music-api/sdk"
 
 func New(opts ...Option) (*Client, error) {
 	return sdk.New(opts...)

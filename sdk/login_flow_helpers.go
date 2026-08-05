@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/config"
 )
 
 // dedupSetCookie keeps only the last value for each cookie key.

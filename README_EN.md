@@ -9,13 +9,13 @@
 Install:
 
 ```bash
-go get github.com/lfhy/kugou-music-api
+go get github.com/rushingrain/kugou-music-api
 ```
 
 Recommended root import:
 
 ```go
-import kg "github.com/lfhy/kugou-music-api"
+import kg "github.com/rushingrain/kugou-music-api"
 ```
 
 Minimal example:
@@ -28,7 +28,7 @@ import (
 	"fmt"
 	"log"
 
-	kg "github.com/lfhy/kugou-music-api"
+	kg "github.com/rushingrain/kugou-music-api"
 )
 
 func main() {
@@ -53,8 +53,8 @@ func main() {
 
 Compatibility:
 
-- New projects should import the root package `github.com/lfhy/kugou-music-api`
-- Existing code can continue using `github.com/lfhy/kugou-music-api/sdk`
+- New projects should import the root package `github.com/rushingrain/kugou-music-api`
+- Existing code can continue using `github.com/rushingrain/kugou-music-api/sdk`
 
 Session and auto refresh:
 

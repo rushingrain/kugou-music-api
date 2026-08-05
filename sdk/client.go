@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/kugou"
-	"github.com/lfhy/kugou-music-api/core/util"
+	"github.com/rushingrain/kugou-music-api/core/kugou"
+	"github.com/rushingrain/kugou-music-api/core/util"
 )
 
 type requestExecutor func(context.Context, kugou.RequestConfig) (kugou.Response, error)

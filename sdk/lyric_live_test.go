@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/examples/shared/session"
+	"github.com/rushingrain/kugou-music-api/examples/shared/session"
 )
 
 func TestLyricLiveToLRC(t *testing.T) {

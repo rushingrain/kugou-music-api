@@ -13,7 +13,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/lfhy/kugou-music-api/core/util"
+	"github.com/rushingrain/kugou-music-api/core/util"
 )
 
 const (

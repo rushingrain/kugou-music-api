@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/examples/shared/session"
+	"github.com/rushingrain/kugou-music-api/examples/shared/session"
 )
 
 type autoConfig struct {

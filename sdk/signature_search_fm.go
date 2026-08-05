@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/config"
-	"github.com/lfhy/kugou-music-api/core/util"
+	"github.com/rushingrain/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/util"
 )
 
 // Search and FM endpoints use upstream signature flows that differ from generic wrappers.

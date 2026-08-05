@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lfhy/kugou-music-api/core/config"
+	"github.com/rushingrain/kugou-music-api/core/config"
 )
 
 // Signature-based audio recommendation endpoints keep their custom payloads here.

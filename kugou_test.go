@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	kg "github.com/lfhy/kugou-music-api"
+	kg "github.com/rushingrain/kugou-music-api"
 )
 
 func TestRootPackageFacade(t *testing.T) {

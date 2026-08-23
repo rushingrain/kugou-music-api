@@ -4,6 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/md5"
+	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/hex"
@@ -118,7 +119,8 @@ func CryptoRSAEncryptPKCS1Hex(data any, publicKeyPEM string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	encrypted, err := rsa.EncryptPKCS1v15(nil, pub, buf)
+	// PKCS#1 v1.5 padding requires a cryptographically secure random source.
+	encrypted, err := rsa.EncryptPKCS1v15(rand.Reader, pub, buf)
 	if err != nil {
 		return "", err
 	}

@@ -90,18 +90,15 @@ func (c *Client) RegisterDev(ctx context.Context, req RegisterDevRequest) (*Regi
 	})
 
 	out := &Response{Status: raw.Status, RawBody: raw.Body, Headers: raw.Headers, Cookie: raw.Cookie}
-	if len(raw.Body) > 0 {
-		decoded, derr := playlistAesDecryptFromRaw(raw.Body, enc.Key)
-		if derr == nil {
-			out.Body = decoded
-			if b, jerr := json.Marshal(decoded); jerr == nil {
-				out.RawBody = b
-			}
-			if status, _ := decoded["status"].(float64); int(status) == 1 {
-				if dm, ok := decoded["data"].(map[string]any); ok {
-					if dfid := strings.TrimSpace(fmt.Sprintf("%v", dm["dfid"])); dfid != "" && dfid != "<nil>" {
-						out.Cookie = append(out.Cookie, "dfid="+dfid)
-					}
+	if decoded := decodeRegisterDevResponse(raw.Body, enc.Key); decoded != nil {
+		out.Body = decoded
+		if b, jerr := json.Marshal(decoded); jerr == nil {
+			out.RawBody = b
+		}
+		if fmt.Sprintf("%v", decoded["status"]) == "1" {
+			if dm, ok := decoded["data"].(map[string]any); ok {
+				if dfid := strings.TrimSpace(fmt.Sprintf("%v", dm["dfid"])); dfid != "" && dfid != "<nil>" {
+					out.Cookie = append(out.Cookie, "dfid="+dfid)
 				}
 			}
 		}
@@ -112,6 +109,23 @@ func (c *Client) RegisterDev(ctx context.Context, req RegisterDevRequest) (*Regi
 		c.updateCookiePool(clean)
 	}
 	return (*RegisterDevResponse)(out), err
+}
+
+// decodeRegisterDevResponse accepts the plaintext JSON response currently returned by
+// /register/dev and falls back to the legacy AES-CBC response format.
+func decodeRegisterDevResponse(raw []byte, key string) map[string]any {
+	if len(raw) == 0 {
+		return nil
+	}
+	var decoded map[string]any
+	if json.Unmarshal(raw, &decoded) == nil {
+		return decoded
+	}
+	decoded, err := playlistAesDecryptFromRaw(raw, key)
+	if err != nil {
+		return nil
+	}
+	return decoded
 }
 
 func (c *Client) UserVideoCollect(ctx context.Context, req UserVideoCollectRequest) (*UserVideoCollectResponse, error) {

@@ -87,6 +87,7 @@ func fixStatusForModel(m apiModel) (status, mode, note string) {
 		"playlist_track_all_new":    true,
 		"privilege_lite":            true,
 		"rank_audio":                true,
+		"search":                    true,
 		"search_complex":            true,
 		"search_default":            true,
 		"search_lyric":              true,

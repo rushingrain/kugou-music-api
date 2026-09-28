@@ -15,25 +15,6 @@ type SearchRequest struct {
 
 type SearchResponse = Response
 
-func (c *Client) Search(ctx context.Context, req SearchRequest) (*SearchResponse, error) {
-	params := structToMap(req)
-	delete(params, "Cookie")
-	delete(params, "Extra")
-	if compat, ok := buildCompatParams("search", params, req.Cookie); ok {
-		params = compat
-	}
-	for k, v := range req.Extra {
-		params[k] = v
-	}
-	cookie := applyCompatCookie("search", req.Cookie)
-	resp, err := c.Call(ctx, RouteSearch, Request{Params: params, Cookie: cookie})
-	if err != nil {
-		return nil, err
-	}
-	out := SearchResponse(*resp)
-	return &out, nil
-}
-
 type SearchComplexRequest struct {
 	Keywords any               `json:"keywords,omitempty"`
 	Page     int               `json:"page,omitempty"`

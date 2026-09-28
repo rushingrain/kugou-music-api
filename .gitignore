@@ -1,3 +1,7 @@
+# Editor and macOS local artifacts.
+.DS_Store
+.idea/
+
 /subsonic_playlists
 /subsonic_server
 !/examples/subsonic_playlists/

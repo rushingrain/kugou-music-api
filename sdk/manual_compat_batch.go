@@ -178,15 +178,6 @@ func (c *Client) RankAudio(ctx context.Context, req RankAudioRequest) (*RankAudi
 	return &out, nil
 }
 
-func (c *Client) SearchComplex(ctx context.Context, req SearchComplexRequest) (*SearchComplexResponse, error) {
-	resp, err := compatCall(ctx, c, RouteSearchComplex, "search_complex", req, req.Cookie, req.Extra)
-	if err != nil {
-		return nil, err
-	}
-	out := SearchComplexResponse(*resp)
-	return &out, nil
-}
-
 func (c *Client) SearchDefault(ctx context.Context, req SearchDefaultRequest) (*SearchDefaultResponse, error) {
 	resp, err := compatCall(ctx, c, RouteSearchDefault, "search_default", req, req.Cookie, req.Extra)
 	if err != nil {

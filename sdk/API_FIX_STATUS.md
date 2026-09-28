@@ -96,7 +96,7 @@
 | `scene_module_info` | `/scene/module/info` | `待实测` | `manual-pending` | 手写封装已完成，待联调校验 |
 | `scene_music` | `/scene/music` | `待实测` | `manual-pending` | 手写封装已完成，待联调校验 |
 | `scene_video_list` | `/scene/video/list` | `待实测` | `manual-pending` | 手写封装已完成，待联调校验 |
-| `search` | `/search` | `已校对修复` | `auto-compat` | 自动规则 7 条 |
+| `search` | `/search` | `已校对修复` | `manual` | 手写封装优先 |
 | `search_complex` | `/search/complex` | `已校对修复` | `manual` | 手写封装优先 |
 | `search_default` | `/search/default` | `已校对修复` | `manual` | 手写封装优先 |
 | `search_hot` | `/search/hot` | `已校对修复` | `auto-compat` | 自动规则 2 条 |

@@ -50,3 +50,4 @@
 - [ ] 在 CI（或本地脚本）加入：
   - [ ] `go test ./...`
   - [ ] 生成文件一致性检查（`tools/gen` 后无差异）
+- [ ] 修复 `tools/gen` 的 API 分片边界：当前 JS 模块集（166 个）比已生成目录（153 个）多出 `top_tag_card_youth` 等条目，直接运行会 panic `missing API shard for ...`，导致“生成文件一致性检查”暂时无法执行。

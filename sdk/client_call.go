@@ -1,6 +1,7 @@
 package sdk
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -88,11 +89,32 @@ func (c *Client) executeJSONRequest(ctx context.Context, cfg kugou.RequestConfig
 		c.updateCookiePool(raw.Cookie)
 	}
 	out := &Response{Status: raw.Status, RawBody: raw.Body, Headers: raw.Headers, Cookie: raw.Cookie}
-	var body map[string]any
-	if json.Unmarshal(raw.Body, &body) == nil {
+	if body := decodeJSONBody(raw.Body); body != nil {
 		out.Body = body
 	}
 	return out, err
+}
+
+// decodeJSONBody accepts ordinary JSON and responses that the upstream gateway
+// wraps in KG_TAG_RES comment markers. Healthy responses are plain JSON, so this
+// is only a safety net for the wrapped edge responses observed while debugging
+// search. RawBody remains untouched for callers that need it.
+func decodeJSONBody(raw []byte) map[string]any {
+	body := bytes.TrimSpace(raw)
+	const startTag = "<!--KG_TAG_RES_START-->"
+	const endTag = "<!--KG_TAG_RES_END-->"
+	if bytes.HasPrefix(body, []byte(startTag)) {
+		body = bytes.TrimSpace(bytes.TrimPrefix(body, []byte(startTag)))
+		if end := bytes.Index(body, []byte(endTag)); end >= 0 {
+			body = bytes.TrimSpace(body[:end])
+		}
+	}
+
+	var decoded map[string]any
+	if json.Unmarshal(body, &decoded) != nil {
+		return nil
+	}
+	return decoded
 }
 
 func (c *Client) mergeRequestCookies(extra map[string]string, preferClientAuth bool) map[string]string {

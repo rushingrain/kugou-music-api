@@ -24,6 +24,13 @@ func (c *Client) ensureLoginValid(ctx context.Context, cookie map[string]string)
 	if err == nil && isBizSuccessCode(resp) {
 		return c.Cookie(), true
 	}
+	// Callers that disable automatic refresh must not trigger a refresh
+	// indirectly through an authenticated helper method. Returning the
+	// current cookie preserves the existing best-effort validation behavior;
+	// the caller will receive the original request result or auth error.
+	if !c.autoRefresh {
+		return merged, false
+	}
 	if _, refreshErr := c.refreshLoginSession(ctx, merged); refreshErr != nil {
 		return c.Cookie(), false
 	}

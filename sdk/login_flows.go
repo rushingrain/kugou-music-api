@@ -239,7 +239,7 @@ func (c *Client) LoginByToken(ctx context.Context, req TokenLoginRequest) (*Resp
 
 	raw, err := c.doRequest(ctx, kugou.RequestConfig{
 		Method:      "POST",
-		BaseURL:     "http://login.user.kugou.com",
+		BaseURL:     "https://login.user.kugou.com",
 		URL:         ternaryString(c.isLite, "/v4/login_by_token", "/v5/login_by_token"),
 		Data:        data,
 		EncryptType: "android",

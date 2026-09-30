@@ -109,6 +109,50 @@ func TestCallReturnsErrorWhenAutoRefreshDisabled(t *testing.T) {
 	}
 }
 
+func TestEnsureLoginValidDoesNotRefreshWhenDisabled(t *testing.T) {
+	client, err := New(
+		WithCookie(map[string]string{"token": "old-token", "userid": "123"}),
+		WithAutoRefresh(false),
+	)
+	if err != nil {
+		t.Fatalf("New() error = %v", err)
+	}
+
+	refreshCalls := 0
+	validationCalls := 0
+	client.requester = func(ctx context.Context, cfg corekugou.RequestConfig) (corekugou.Response, error) {
+		if strings.Contains(cfg.URL, "login_by_token") {
+			refreshCalls++
+		}
+		if cfg.URL == "/v3/get_my_info" {
+			validationCalls++
+			return stubCoreResponse(`{"status":0,"error_code":20018,"data":null}`), nil
+		}
+		return stubCoreResponse(`{"status":1,"error_code":0}`), nil
+	}
+
+	_, ok := client.ensureLoginValid(context.Background(), client.Cookie())
+	if ok {
+		t.Fatal("ensureLoginValid() = true, want false")
+	}
+	if validationCalls != 1 {
+		t.Fatalf("validationCalls = %d, want 1", validationCalls)
+	}
+	if refreshCalls != 0 {
+		t.Fatalf("refreshCalls = %d, want 0", refreshCalls)
+	}
+}
+
+func TestLoginTokenUsesHTTPS(t *testing.T) {
+	sp, ok := apiSpecMap[RouteLoginToken]
+	if !ok {
+		t.Fatal("login token route not found")
+	}
+	if !strings.HasPrefix(sp.BaseURL, "https://") {
+		t.Fatalf("login token BaseURL = %q, want HTTPS", sp.BaseURL)
+	}
+}
+
 func stubCoreResponse(body string, setCookies ...string) corekugou.Response {
 	return corekugou.Response{
 		Status:  200,

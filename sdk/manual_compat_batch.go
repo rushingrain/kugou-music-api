@@ -196,7 +196,8 @@ func (c *Client) SearchLyric(ctx context.Context, req SearchLyricRequest) (*Sear
 	}
 	appid, clientver := config.PlatformConfig(c.isLite)
 	clear := true
-	noSign := true
+	// 该接口必须带签名：跳过签名会被歌词服务返回空响应体，候选列表永远为空。
+	// 这里不设置 NotSignature，沿用 RouteSearchLyric spec 的默认值（false）。
 	resp, err := c.Call(ctx, RouteSearchLyric, Request{
 		Method:  "GET",
 		BaseURL: "https://lyrics.kugou.com",
@@ -214,7 +215,6 @@ func (c *Client) SearchLyric(ctx context.Context, req SearchLyricRequest) (*Sear
 		Cookie:             req.Cookie,
 		EncryptType:        "android",
 		ClearDefaultParams: &clear,
-		NotSignature:       &noSign,
 	})
 	if err != nil {
 		return nil, err
